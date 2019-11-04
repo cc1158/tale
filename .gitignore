@@ -1,17 +1,46 @@
-# Maven #
+# 编译生成的文件
+*.class
+*.jar
+*.war
+*.ear
+*.scssc
+src/main/java/com/zhaopin/hello/*/_*
+src/main/resources/api
+
+/logs
+
+# ivy lib folder
+/lib
+
+# ant output folder
+build/
+
+# maven output folder
 target/
 
-# IDEA #
-.idea/
-*.iml
+# gradle output folder
+.gradle
+gradle
 
-# Eclipse #
-.settings/
+# Intellij IDEA config
+.idea
+*.iml
+out/
+classes/
+
+
+# Eclipse config
 .classpath
 .project
+.settings
+bin/
 
-# logs file #
-logs/
+# icon cache
+.DS_Store
+
+# zhaopin
+statistics-log
+
 
 # database file #
 tale.db
