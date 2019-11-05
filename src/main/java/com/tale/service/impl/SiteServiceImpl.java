@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -59,7 +60,7 @@ public class SiteServiceImpl implements SiteService {
         users.setPassword(pwd);
         users.setScreen_name(users.getUsername());
         users.setCreated(DateKit.getCurrentUnixTime());
-        Long uid = activeRecord.insert(users);
+        BigInteger uid = activeRecord.insert(users);
 
         try {
             Properties props = new Properties();

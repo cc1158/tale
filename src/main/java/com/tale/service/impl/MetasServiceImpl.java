@@ -13,6 +13,7 @@ import com.tale.model.Metas;
 import com.tale.model.Relationships;
 import com.tale.service.MetasService;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -65,7 +66,7 @@ public class MetasServiceImpl implements MetasService {
             metas.setSlug(name);
             metas.setName(name);
             metas.setType(type);
-            Long mid_ = activeRecord.insert(metas);
+            BigInteger mid_ = activeRecord.insert(metas);
             mid = mid_.intValue();
         }
         if (mid != 0) {

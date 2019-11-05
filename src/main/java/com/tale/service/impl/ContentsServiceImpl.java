@@ -16,6 +16,7 @@ import com.tale.service.MetasService;
 import com.tale.utils.TaleUtils;
 import com.vdurmont.emoji.EmojiParser;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -84,7 +85,7 @@ public class ContentsServiceImpl implements ContentsService {
         String tags = contents.getTags();
         String categories = contents.getCategories();
 
-        Long cid_ = activeRecord.insert(contents);
+        BigInteger cid_ = activeRecord.insert(contents);
         Integer cid = cid_.intValue();
 
         metasService.saveMetas(cid, tags, Types.TAG);

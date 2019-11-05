@@ -26,21 +26,7 @@
     </div>
     <div class="footer-meta">
         <div class="footer-container">
-            <div class="meta-item meta-copyright">
-                <div class="meta-copyright-info">
-                    <a href="${site_url()}" class="info-logo">
-                        <img src="/templates/themes/default/static/img/logo.png" alt="${site_title()}">
-                    </a>
-                    <div class="info-text">
-                        <p>一生有所追求.</p>
-                        <p>Powered by <a href="https://github.com/otale/tale" target="_blank" rel="nofollow">Tale</a>
-                        </p>
-                        <p>&copy; 2017 <a href="https://github.com/biezhi">biezhi</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="meta-item meta-posts">
+            <div class="meta-item meta-posts" style="width: 50%; text-align: center">
                 <h3 class="meta-title">最新文章</h3>
                 #for(article : recent_articles(8))
                 <li>
@@ -49,13 +35,26 @@
                 #end
             </div>
 
-            <div class="meta-item meta-comments">
+            <div class="meta-item meta-comments" style="width: 50%; text-align: center">
                 <h3 class="meta-title">最新评论</h3>
                 #for(comm : recent_comments(8))
                 <li>
                     <a href="${site_url('/article/')}${comm.cid}#comment-${comm.coid}">${comm.author}：${comm.content}</a>
                 </li>
                 #end
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-social">
+    </div>
+    <div class="footer-container clearfix">
+        <div class="meta-item meta-copyright">
+            <div class="meta-copyright-info">
+                <div class="info-text" style="text-align: center">
+                    <p>---------代码永不眠--------- </p>
+                     <p>Powered by <a href="https://github.com/otale/tale" target="_blank" rel="nofollow">Tale</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -66,7 +65,7 @@
     <div id="directory"></div>
 </div>
 <script>
-    var postDirectoryBuild = function() {
+    var postDirectoryBuild = function () {
         var postChildren = function children(childNodes, reg) {
                 var result = [],
                     isReg = typeof reg === 'object',
@@ -76,19 +75,19 @@
                     node = childNodes[i];
                     if ((node.nodeType === 1 || node.nodeType === 9) &&
                         (!reg ||
-                        isReg && reg.test(node.tagName.toLowerCase()) ||
-                        isStr && node.tagName.toLowerCase() === reg)) {
+                            isReg && reg.test(node.tagName.toLowerCase()) ||
+                            isStr && node.tagName.toLowerCase() === reg)) {
                         result.push(node);
                     }
                 }
                 return result;
             },
-            createPostDirectory = function(article, directory, isDirNum) {
+            createPostDirectory = function (article, directory, isDirNum) {
                 var contentArr = [],
                     titleId = [],
                     levelArr, root, level,
                     currentList, list, li, link, i, len;
-                levelArr = (function(article, contentArr, titleId) {
+                levelArr = (function (article, contentArr, titleId) {
                     var titleElem = postChildren(article.childNodes, /^h\d$/),
                         levelArr = [],
                         lastNum = 1,
@@ -145,13 +144,13 @@
                     link = document.createElement('a');
                     link.href = '#' + titleId[i];
                     link.innerHTML = !isDirNum ? contentArr[i] :
-                        dirNum.join('.') + ' ' + contentArr[i] ;
+                        dirNum.join('.') + ' ' + contentArr[i];
                     li.appendChild(link);
                     currentList.appendChild(li);
                 }
                 directory.appendChild(root);
             };
-        createPostDirectory(document.getElementById('post-content'),document.getElementById('directory'), true);
+        createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
     };
     postDirectoryBuild();
 </script>
@@ -160,20 +159,22 @@
 <script src="//cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
 <script src="//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js"></script>
 <script type="text/javascript">
-    #if(is_post)
+    #
+    if (is_post)
         var postDirectory = new Headroom(document.getElementById("directory-content"), {
             tolerance: 0,
-            offset : 100,
+            offset: 100,
             classes: {
                 initial: "initial",
                 pinned: "pinned",
                 unpinned: "unpinned"
             }
         });
-    #end
+    #
+    end
     var header = new Headroom(document.getElementById("header"), {
         tolerance: 10,
-        offset : 80,
+        offset: 80,
         classes: {
             initial: "animated",
             pinned: "slideDown",
