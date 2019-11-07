@@ -167,7 +167,7 @@ public final class Theme {
             String[] arr = categories.split(",");
             StringBuffer sbuf = new StringBuffer();
             for (String c : arr) {
-                sbuf.append("<a href=\"/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+                sbuf.append("<a href=\"/category/" + TaleConst.BCONF.get("app.nginx.context", "ccblog") + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
             }
             return sbuf.toString();
         }
@@ -186,7 +186,7 @@ public final class Theme {
             String[] arr = contents.getTags().split(",");
             StringBuffer sbuf = new StringBuffer();
             for (String c : arr) {
-                sbuf.append(split).append("<a href=\"/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+                sbuf.append(split).append("<a href=\"" + TaleConst.BCONF.get("app.nginx.context", "ccblog") + "/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
             }
             return split.length() > 0 ? sbuf.substring(split.length() - 1) : sbuf.toString();
         }
@@ -295,7 +295,11 @@ public final class Theme {
         int cid = contents.getCid();
         int size = cid % 20;
         size = size == 0 ? 1 : size;
-        return "/templates/themes/default/static/img/rand/" + size + ".jpg";
+        return TaleConst.BCONF.get("app.nginx.context", "/ccblog") + "/templates/themes/default/static/img/rand/" + size + ".jpg";
+    }
+
+    public static String show_bg_ico() {
+        return TaleConst.BCONF.get("app.nginx.context", "/ccblog") + "/templates/themes/default/static/img/bg-ico.png";
     }
 
     /**
